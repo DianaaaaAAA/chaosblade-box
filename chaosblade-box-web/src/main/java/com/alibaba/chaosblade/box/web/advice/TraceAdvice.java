@@ -50,17 +50,20 @@ import java.lang.reflect.Type;
 public class TraceAdvice implements ResponseBodyAdvice<Object>, RequestBodyAdvice {
 
     @Override
-    public boolean supports(MethodParameter methodParameter, Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
+    public boolean supports(MethodParameter methodParameter, Type targetType,
+                            Class<? extends HttpMessageConverter<?>> converterType) {
         return true;
     }
 
     @Override
-    public HttpInputMessage beforeBodyRead(HttpInputMessage inputMessage, MethodParameter parameter, Type targetType, Class<? extends HttpMessageConverter<?>> converterType) throws IOException {
+    public HttpInputMessage beforeBodyRead(HttpInputMessage inputMessage, MethodParameter parameter, Type targetType,
+                                           Class<? extends HttpMessageConverter<?>> converterType) throws IOException {
         return inputMessage;
     }
 
     @Override
-    public Object afterBodyRead(Object body, HttpInputMessage inputMessage, MethodParameter parameter, Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
+    public Object afterBodyRead(Object body, HttpInputMessage inputMessage, MethodParameter parameter, Type targetType,
+                                Class<? extends HttpMessageConverter<?>> converterType) {
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
         Object requestId = requestAttributes.getAttribute(WebConstants.REQUEST_ID, RequestAttributes.SCOPE_REQUEST);
 
@@ -69,7 +72,8 @@ public class TraceAdvice implements ResponseBodyAdvice<Object>, RequestBodyAdvic
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         try {
             ObjectWriter writer = JsonUtils.writer();
-            log.info("[Request], request id: {}, path: {}, body: {}", requestId, request.getRequestURI(), writer.writeValueAsString(body));
+            log.info("[Request], request id: {}, path: {}, body: {}", requestId, request.getRequestURI(),
+                    writer.writeValueAsString(body));
         } catch (JsonProcessingException e) {
             log.error(e.getMessage(), e);
         }
@@ -77,7 +81,8 @@ public class TraceAdvice implements ResponseBodyAdvice<Object>, RequestBodyAdvic
     }
 
     @Override
-    public Object handleEmptyBody(Object body, HttpInputMessage inputMessage, MethodParameter parameter, Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
+    public Object handleEmptyBody(Object body, HttpInputMessage inputMessage, MethodParameter parameter, Type targetType,
+                                  Class<? extends HttpMessageConverter<?>> converterType) {
         return body;
     }
 
@@ -87,7 +92,9 @@ public class TraceAdvice implements ResponseBodyAdvice<Object>, RequestBodyAdvic
     }
 
     @Override
-    public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
+    public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType,
+                                  Class<? extends HttpMessageConverter<?>> selectedConverterType,
+                                  ServerHttpRequest request, ServerHttpResponse response) {
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
         Object requestId = requestAttributes.getAttribute(WebConstants.REQUEST_ID, RequestAttributes.SCOPE_REQUEST);
         try {

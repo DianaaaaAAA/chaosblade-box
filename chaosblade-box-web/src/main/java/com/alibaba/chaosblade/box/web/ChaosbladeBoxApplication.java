@@ -28,7 +28,10 @@ import org.springframework.context.annotation.Import;
 public class ChaosbladeBoxApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(ChaosbladeBoxApplication.class, args);
+
+        System.out.print(String.valueOf(System.currentTimeMillis()/1000));
     }
 
 }

@@ -54,6 +54,7 @@ public class SystemPropertiesUtils {
         if (StrUtil.isBlank(envValue)) {
             return getPropertiesValue(key);
         }
+        System.out.print(envValue);
         return envValue;
     }
 

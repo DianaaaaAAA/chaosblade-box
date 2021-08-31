@@ -34,7 +34,7 @@ public class InetUtils {
                 hostAddress = InetAddress.getLocalHost().getHostAddress();
             } catch (UnknownHostException e) {
                 AnyThrow.throwUnchecked(e);
-            }
+            } //获取到本机的hostAddress
             return hostAddress;
         }
         return hostAddress;

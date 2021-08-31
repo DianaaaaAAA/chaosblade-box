@@ -9,15 +9,15 @@ logging:
 spring:
   application:
     name: chaosblade-box
-    version: @project.version@
+    version: 0.4.1
   datasource:
     initialization-mode: always
     schema:
       - classpath:sql/chaos-box-ddl.sql
     platform: mysql
-    url: jdbc:mysql://@mysql.url@/chaosblade?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: @mysql.username@
-    password: @mysql.password@
+    url: jdbc:mysql://127.0.0.1:3308/chaosblade?characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: mysql
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -40,6 +40,7 @@ spring:
 
 server:
   port: 8080
+#  port: 8888
 
 mybatis-plus:
   configuration:
