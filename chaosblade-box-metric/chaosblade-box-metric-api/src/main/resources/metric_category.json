@@ -46,6 +46,20 @@
         "level": 1,
         "code": "metric.prometheus.pod.mem",
         "params": "[{\"name\":\"url\", \"desc\":\"prometheus url\", \"type\":\"text\", \"required\": true},{\"name\":\"query\", \"desc\":\"prometheus query\", \"type\":\"text\", \"required\": true, \"defaultValue\": \"sum(node_namespace_pod_container:container_memory_working_set_bytes{cluster='', container!=''}) by (pod)\"}]"
+      },
+      {
+         "name": "MySQL Slow Query",
+        "parentId": 1381787810201034754,
+        "level": 1,
+        "code": "metric.prometheus.mysql.query",
+        "params": "[{\"name\":\"url\", \"desc\":\"prometheus url\", \"type\":\"text\", \"required\": true},{\"name\":\"query\", \"desc\":\"prometheus query\", \"type\":\"text\", \"required\": true, \"defaultValue\": \"mysql_global_status_slow_queries\"}]"
+      },
+      {
+        "name": "MySQL bytes received",
+        "parentId": 1381787810201034754,
+        "level": 1,
+        "code": "metric.prometheus.mysql.bytes",
+        "params": "[{\"name\":\"url\", \"desc\":\"prometheus url\", \"type\":\"text\", \"required\": true},{\"name\":\"query\", \"desc\":\"prometheus query\", \"type\":\"text\", \"required\": true, \"defaultValue\": \"mysql_global_status_bytes_received\"}]"
       }
     ]
   }
